@@ -1,0 +1,43 @@
+\documentclass[]{report}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{Math 1953 Written Homework 4}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    HELPFUL\\
+    $\int_{0}^{1} \frac{1}{x^{p}} dx $ Converges if $p < 1$\\
+    $\int_{1}^{\infty} \frac{1}{x^{p}} dx $ Converges if $p > 1$}%
+}
+\begin{enumerate}
+        \item For which values of $p$ does the improper integral $\int_{e}^{\infty} \frac{1}{x(ln(x))^{p}} dx $ converge, and what is its value (in terms of $p$)?
+                                \begin{align}
+                                        \int_{e}^{\infty} \frac{1}{x(lnx)^p} dx 
+                                        &= \lim_{t\to\infty} \int_{e}^{t} \frac{1}{x(lnx)^{p}} dx \\
+                                        \shortintertext{Assuming $\lim_{t\to\infty}  $ for next steps} 
+                                        &= \int_{e}^{t} \frac{(ln(x))^{-p}}{x} dx \\
+                                \end{align}
+
+        \item   $\int_{0}^{\infty} \frac{1}{x^{3} + \sqrt[2]{x} } dx $
+                \begin{align}
+                        &= \int_{0}^{1} \frac{1}{x^{3} + \sqrt[2]{x} } dx + \int_{1}^{\infty} \frac{1}{x^{3}+\sqrt[2]{x} } dx \\
+                        \shortintertext{Prove that both of these converge } 
+                        &= \frac{1}{x^{3}+\sqrt[2]{x} } \leq \frac{1}{x^{3}}\\
+                        \shortintertext{Because of the information in the box, $\int_{1}^{\infty} \frac{1}{x^{3}+\sqrt[2]{x} } dx $ converges} 
+                        \shortintertext{Also} 
+                        &= \frac{1}{x^{3}+\sqrt[2]{x} } \leq \frac{1}{x^{\frac{1}{2}}}
+                \end{align}
+\end{enumerate}
+
+\end{document}

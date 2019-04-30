@@ -1,0 +1,144 @@
+\documentclass[]{report}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{Calc notes Day 19}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+\section*{11.1 Sequences}
+Written as \textbf{($X_N$)}
+\subsection*{Convergence}
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    EX:}%
+}
+$ \sqrt[2]{n + 2} $
+$
+\begin{cases}
+        x_1 & \sqrt[2]{3} \\
+        x_2 & \sqrt[2]{4} \\
+        x_3 & \sqrt[2]{5} \\  
+
+\end{cases} etc...
+$
+Another way to describe sequence: recursive def:
+\[
+        x_{n=1} = \frac{1}{1 + x_n}, x_1 = 1
+.\] 
+\\EX:\\
+\[
+     x_2  = \frac{1}{1+x_1}= \frac{1}{1+1}=\frac{1}{2}
+.\]  
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    what does it mean to say seq $x_n$ approaches / converges to a limit ?}%
+}
+\\
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    \textbf{IDEA} $(X_n) \to L $ means:}%
+} No matter how close you want to get to $x_n$ to get to L, it will happen if n is large enough
+\\
+EX : $(\frac{1}{n})$ 
+\\
+$1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}. \frac{1}{5}$
+\\ This converges to 0.
+\\
+Reason: for any tiny number  you give me, if I go far enough in $(x_n)$, then $x_n$ is that close to 0. 
+\subsubsection*{Illustration}
+Can we make $(\frac{1}{n})$ be within 0.1 of 0?
+\\ 
+if  $n > 10 \to 0 < \frac{1}{n} < \frac{1}{10} $ 
+\\ 
+this means that dist from $\frac{1}{n}$ to 0 is $< \frac{1}{10}$ after n = 10. 
+\\ This tells us that we can get beneath 0.1, but so what? 
+\\
+\textbf{EX part 2:}
+\\
+What about under 0.0005?
+\\
+\clearpage
+\subsubsection*{Convergence in "math speak"}
+For every $\epsilon > 0$, then there is N such that if $n > N$, then the distance between $x_n$ and L is $< \epsilon$
+if $n > 2000$, then $0 < \frac{1}{n} < 0.0005$
+\\
+\begin{itemize}
+        \item If you go FAR ENOUGH, (past N), then n will be less than any given bounds 
+\end{itemize}
+\textbf{This is a lot to write, how can we show that $(x_n) \to L$ without doing that?}
+2 Techniques to show $(x_n)\to L$ :
+\begin{itemize}
+        \item Algebra + simplification + $\frac{1}{n} \to 0$
+
+\end{itemize}
+                \[
+                        \frac{2^{2} + n }{2n^{2}- 1} = \frac{(n^{2} + n) * \frac{1}{n^{2}}}{(2n^{2}-1)*\frac{1}{n^{2}}} = \frac{1 + \frac{1}{n}}{2 - \frac{1}{n} * \frac{1}{2}} = \frac{1 + 0}{2 - 0 * 0} = \frac{1}{2} 
+                .\] 
+                \begin{itemize}
+                        \item Calc / L'H
+                                \subitem \textbf{EX:} What's the limit of  $\frac{ln(n)}{n}= x_n$?
+\end{itemize}
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    ONLY POSITIVE INTEGERS ARE ALLOWED FOR n in SEQUENCES }%
+}
+Moving back to the problem above: 
+\\
+If we graph $\frac{ln(n)}{n}$ : We can only plug in positive \textbf{INTEGERS}. See notebook CALC III day 18 and 19 for fig 1.
+\\
+The graph of $\frac{ln(n)}{n}$ is dots, which are a small part of graph $\frac{ln(x)}{x}$. 
+\\
+Can treat this like a \textbf{FUNCTION} anyway, and can use calculus on it:
+\[
+        \lim_{x\to\infty} \frac{ln(x)}{x} \to \frac{\infty}{\infty} \to \lim_{x\to\infty} \frac{\frac{1}{x}}{1} = 0
+.\] 
+Therefore: 
+\\
+\[
+        \lim_{n\to\infty} \frac{ln(n)}{n} \to 0
+.\] too!
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    \textbf{RULE:} If you can write the terms of $x_n$ as values of a function $f(n), \lim_{x\to\infty} f(x) = L$ then $(x_n) \to L$}%
+}
+What can't be turned into a function? 
+\\
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    n! is an example of a sequence with CANNOT be turned into a function f(x) (in a simple way)}%
+}
+        
+\subsection*{Increasing $/$ Decreasing}
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    What does it mean to say $(x_n)$ is increasing?}%
+}
+For every n, $x_{n+1} > x_n$
+\\
+Decreasing? 
+\\
+For every n, $x_{n+1} < x_n$
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    How to decide if seq is increasing or decreasing? }%
+}    $x_n = \frac{n}{n+1}$ 
+\\
+rewrite as a function: 
+\\
+$\frac{x}{x+1} $ is a function, take derivative, derivative is inc 
+\end{document}
+
+
+
+

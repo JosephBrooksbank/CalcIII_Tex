@@ -1,0 +1,143 @@
+\documentclass[]{report}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{Calc III Notes Day 21}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+\section*{Sequences}
+\[
+        (x_n) = x_1,x_2,x_3...
+.\]
+\subsection*{How to check if $(x_n)$ converges to limit as $(n \to  \infty)$?}
+\begin{list}{}
+        \item Simplification
+                \noindent\fbox{%
+                    \parbox{\textwidth}{%
+                    EX 1:}%
+                }
+                \[
+                        x_n = \frac{n^{2}}{ \sqrt[2]{n^{6}+ 1} }
+                .\] 
+                Next: put largest n power on the bottom
+                \begin{align}
+                        \frac{n^{2}}{ \sqrt[2]{n^{6}+1} } * \frac{\frac{1}{n^{3}}}{\frac{1}{n^{3}}} \\
+                        &= \frac{\frac{1}{n}}{ \sqrt[2]{\frac{n^{6}+1}{n^{6}}} }
+                        \shortintertext{$\frac{1}{n} \to$ 0}
+                        &= \frac{0}{ \sqrt[2]{1 + \frac{1}{n^{6}}} } 
+                        \\
+                        &= \frac{0}{ \sqrt[2]{1 + 0} }
+\\
+                        &= \frac{0}{1}
+                        \\
+                        &= 0 
+                \end{align}
+     \item L'H Rule 
+             \\
+             We already did this so 
+            \item Squeeze Theorem 
+                    \\
+                    Suppose we had 3 sequences, $x_n \leq y_n \leq z_n$ 
+                    \\
+                    and 
+                    \\
+                    $x_n \to L$ 
+                    \\
+                    $z_n \to L$ 
+                    \\
+                    then $y_n \to L$ 
+
+                    \noindent\fbox{%
+                        \parbox{\textwidth}{%
+                        Example of Squeeze Theorem}%
+                    } 
+                    \[
+                            y_n = \frac{sin(n)}{n}
+                    .\] 
+                    This equation is totally unpredictable (What is sin(11)?)... but \textbf{BETWEEN} -1 and 1 
+                    \\
+                    \large{IDEA: squeeze the equation between other things}
+                    \[
+                            -1 \leq \frac{sin(n)}{n} \leq 1
+                    .\] 
+                    The squeeze theorem needs to have both sides of the squeeze go to the same point 
+                    \\
+                    so instead:
+                    \[
+                            -\frac{1}{n} \leq \frac{sin(n)}{n} \leq \frac{1}{n}                    
+                    .\] 
+                    Both $-\frac{1}{n} and \frac{1}{n}$ $\to$ 0, so by squeeze theorem, so does $\frac{sin(n)}{n}$ !
+\end{list}
+\subsection*{How to check if $(x_n) inc / dec$?}
+\begin{enumerate}
+        \item Compare $x_n$ and $x_{n+1}$ 
+                \\
+                EX: Is $x_n = \frac{n}{n+1}$ inc, dec, or neither?
+                \\
+                \begin{itemize}
+                        \item $x_1 $ = $\frac{1}{2}$ 
+                                \item $x_2 = \frac{2}{3}$ 
+                                        \item $x_3 = \frac{3}{4}$
+                \end{itemize}
+                Guess: Increasing!
+                \\
+                $x_n < x_{n+1}$
+                \\
+                $\frac{n}{n+1} < \frac{n+1}{n+2}$
+                Cross Multiply:
+                \\ $n(n+2) < (n+1)(n+1)$
+                \\ Check to make sure that this is true, which it is 
+        \item Check if derivative is increasing or decreasing 
+                \\
+                Went over this last time so we're not doing it this time, but its pretty self explanatory 
+        
+\end{enumerate}
+
+\subsection*{$(x_n)$ bounded from above $/$ below?}
+          \noindent\fbox{%
+              \parbox{\textwidth}{%
+              We say $x_n$ is bounded from above IF:}%
+          } \textbf{There's a number M so that $x_n \leq$ M for all n}
+          \\
+          Same idea for below, but..from...below 
+
+          \subsubsection*{How to check if $x_n$ is bounded from above / below? } 
+          \begin{enumerate}
+                  \item "common sense" / functions known to be bounded 
+                          \begin{itemize}
+                                  \item \textbf{EX 1}
+                                          \\
+                                          \[
+                                                  x_n = sin(n)
+                                          .\] Bound by -1 and 1, so \textbf{BOUND ABOVE AND BELOW} 
+
+                                  \item \textbf{EX 2} 
+                                          \\
+                                          \[
+                                                  x_n = 4 cos(n+5) + 3
+                                          .\] Also bound from both sides 
+
+                                          \item \textbf{EX 3}
+                                          \\
+                                          \[
+                                          x_n = n^{2}
+                                          .\] Bound from below 
+                                          \\ x is always bigger than 0, so its bounded on the bottom but not the top 
+                          \end{itemize}
+                          \item If sequence converges, then its bounded from both sides! 
+                          
+          \end{enumerate}
+          \noindent\fbox{%
+              \parbox{\textwidth}{%
+              \textbf{UNBOUND THINGS:} \\
+      $x_n = n * (-1)^{n}$ Goes to both -infinity and positive infinity }%
+          }
+
+\end{document}

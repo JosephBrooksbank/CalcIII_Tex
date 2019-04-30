@@ -1,0 +1,120 @@
+\documentclass[]{report}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{Calc III Notes Day 22}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+\section*{Homework help}
+Question 6 HW 3: 
+$\lim_{x\to_0}  \frac{cos}{sin} - \frac{1}{x} $
+
+\section*{Last Time:}
+Prof said "If $(x_n) \to L$, then $(x_n)$ is bounded from above AND below
+\\
+This makes sense, after some number of terms (say 5 as an example), all of the terms must be within some interval sufficiently close to L 
+\\ 
+When the sequence is at this point, the sequence is \textbf{DEFINITELY} bounded (it has to be within that interval)
+\\
+If we add in the terms before that point, its \textbf{STILL} bounded, just by larger bounds.. But because all points PAST a certain n are bounded, later terms will never be "farther" outside of bounds than the ones before n.
+\\
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    Basically, just know that if x(n) $\to$ L, then x(n) is bounded from above AND below}%
+}
+
+
+\section*{11.2: Infinite Series!}
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    An infinite series is the sum of an infinite list of numbers}%
+    }
+    \subsection*{Starting here}
+    \textbf{EX 1:} all zeros:
+    \[
+    0, 0, 0, 0,... = 0
+    \] 
+    \textbf{EX 2}
+    \[
+    1 + 1 + 1 + 1...= \infty
+    .\] 
+    \textbf{EX 3}
+    \[
+    \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + ... = 1
+    .\] We SAY this adds up to 1. See Xeno's Paradox for more information (taking steps that are halfway to the next point each time)  
+    \\ 
+    What does this mean for infinite series?
+    None of the items in the series are approaching 1 by themselves, but the SUM is approaching a limit at 1.
+    \\
+    \noindent\fbox{%
+        \parbox{\textwidth}{%
+        For any infinite series $x_1 + x_2 + x_3 +...$ the {nth partial sum} $S_n = x_1 + x_2 +...x_n$ We say the infinite series converges if the seq of partial sums converges.}%
+    }
+
+    \subsection*{Part 2: Electric Boogaloo}
+    \textbf{EX: Take infinite series}
+    \\
+    \[
+    0 + 0 + 0 + 0... =
+    .\] Adding up n zeros is 0, no matter how many 
+    \begin{align}
+            S_1 &= 0 \\
+            S_2 &= 0+0 \\
+            S_3 &= 0+0+0 
+    \end{align}
+    {The $S_n$ converges to 0, so we say the inf. series converges / adds up to 0 } 
+     \subsubsection*{EX 3}
+     \[
+     1 + 1 + 1 + 1 +....
+     .\] Don't care about the \textbf{TERMS}, but about the \textbf{SUMS}
+
+     \begin{align*}
+             S_1 &= 1 \\
+             S_2 &= 1 + 1 \\
+             S_3 &= 1 + 1 + 1 \\
+             S_4 &= 4... 
+     \end{align*}
+     The sums ARE moving towards infinity. 
+
+     \subsubsection*{EX 4: A more interesting one}
+     \[
+             \frac{1}{10} + (\frac{1}{10})^{2} + (\frac{1}{10})^{3}....
+     .\] This is the start of \textbf{GEOMETRIC SERIES!!}
+    \\ 
+     \noindent\fbox{%
+         \parbox{\textwidth}{%
+         Geometric series def: Adding up powers of a single number r}%
+     }
+     \[
+     1 + r + r^{2} + r^{3} + ...
+     .\] 
+     \begin{align*}
+             S_1 &= 1 \\
+             S_2 &= 1 + r \\
+             S_3 &= 1 + r + r^{2}\\
+             S_n &= 1 + r +... + r^{n-1}
+     \end{align*}
+     \textbf{Question: do the $S_n$ approach limit? Converge?}
+     \\
+     Try multiplying $S_n * (1 - r)$
+   \begin{align*}
+           (1 + r +...+r^{n-1})(1-r) &= 1(1 + r +...) - r(1 + r +...) \\
+                                     &= 1 + r +... + r^{n-1} - r - r^{2} - ....r^{n} \\
+                                     &= 1 - r^{n}
+                                     \shortintertext{Multiplying partial sum by (1 - r) gives us a final equation of $1-r^{n)}$} 
+                                     \shortintertext{So now we get: $S_n = \frac{1-r^{n}}{1-r}$} 
+   \end{align*} 
+       QUESTION: What happens to $r^{n}$ as $r \to \infty$ ? \\
+       Yes if $ -1 < r < 1 $
+       \\ 
+       No if  $r > 1 or r \leq -1$
+       \\
+       Converges when $-1 < r < 1$
+\end{document}

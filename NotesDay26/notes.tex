@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+% Title Page
+\title{Calc III Notes Day 26}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+Notes: Web Assign 5 involves section 11.3,\\
+postponed until Friday. 
+\\
+Questions 6-8 not doable yet!
+\\
+Inf Series
+Questions:
+\begin{list}{}
+\item Does it converge (add up to some finite number?) 
+\item or Diverge (doesn't add to some finite number)?  
+\end{list}
+So far, we know 
+\begin{enumerate}
+\item How to check if geom. series converges / diverges 
+\item  $(x_n)$ $\to$ 0, then $ \sum^{n}_{i=1} x_n$ conv?
+        \subitem no, if $\sum^{n}_{i=1} x_n$ conv, then terms $x_n$ $\to$ 0 
+        \subsubitem I.E, if $x_n$ does not $\to$ 0, then $ \sum^{n}_{i=1} x_n$ diverges
+        \subsubitem The alternative is not neccesarily true
+        \subsubitem EX: $1 + \frac{1}{2} + \frac{1}{2} + \frac{1}{4} + \frac{1}{4} + \frac{1}{4} + \frac{1}{4} +....$ 
+        \subsubitem The terms go to zero, but the \textbf{sum} still diverges ( 1 / 2 + 1 /2 = 1, etc) 
+\end{enumerate}
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    If the terms go to 0, the serives might converge OR it might diverge, rest of quarter is how to check this }%
+}
+Big picture: finding out if the denominator or numerator goes to infinity faster 
+\\
+Stepping back for a bit..
+\\
+\[
+        \sum^{\infty}_{n=1} \frac{1}{n} = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} +....
+.\] 
+This sum is the area of all rectangles in this infinite sum 
+\\
+Area of each rectangle is greater than the area under the curve y = 1 / x 
+\\
+Doing the integral of y = 1 / x gives a diverging improper integral, which by the comparison test means that the thing larger than it also diverges (goes to infinity) 
+\\
+EX 2:
+\[
+\sum_{n=1}^{\infty} \frac{1}{n^{3}} = \frac{1}{1^{3}} + \frac{1}{2^{3}} + 1^{3^{3}} 
+.\] 
+If we set the rectangles to start area from the left, \\
+These rectangles all fit under $y = \frac{1}{x^{3}}$ 
+\\
+IE purple area $>$ sum of series 
+\\
+However if area starts to the left, the integral is $\int_{0}^{\infty} \frac{1}{x^{3}} dx $ Which fails 
+\\
+Instead, we can "chop off" the first term which equals 1 
+\\
+and do $\int_{1}^{\infty} \frac{1}{x^{3}} dx $ which equals $\frac{1}{2}$.
+\\ 
+Since all the boxes are less than the integral, the sum from 2 to $\infty$ is less than 1 / 2. 
+\\
+adding back the 1 from the first term, then the entire thing is $< \frac{3}{2}$. 
+\\
+Thus, the original series converges.
+\section*{Putting all of this together: Integral Test}
+How do decide whether something converges or diverges with integrals?\\
+
+Say $\sum_{n=1}^{\infty} x_n $ satisfies:
+\begin{enumerate}
+        \item We can turn func into f(x). 
+        \item $x_n$ decreasing 
+        \item $(x_n)$ is positive  
+\end{enumerate}
+Then convergence status of $\sum_{n=1}^{\infty} x_n $ is SAME as the convergence status of $\int_{1}^{\infty} f(x) dx $. 
+\\
+aka
+\\
+\[ \begin{cases}
+                \text{integral converges} & \text{series converges} \\
+                \text{integral diverges}  & \text{series diverges} 
+\end{cases}
+\]
+
+\subsection*{Example:}
+does series \[
+        \sum_{n=3}^{\infty} \frac{ln(n)}{n}
+.\] Converge or diverge?
+
+\begin{enumerate}
+\item turn $x_n$ into function: 
+        \subitem $f(x) = \frac{ln x}{x}$ 
+        \item $\frac{ln n}{n}$ decreasing?
+                \subitem Usually take first derivative of f(x)  
+                \item are terms $\frac{ln n}{n} > 0$? 
+                        \subitem all n are greater than 3, which implies that ln n > 0, and n > 0, so everything is greater than 0  
+\end{enumerate}
+
+\end{document}

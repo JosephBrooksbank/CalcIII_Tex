@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc III Notes Day 28}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{Continued From last Class}
+Estimating Inf series / integrals
+\\
+\fbox{\begin{minipage}{35em}
+suppose you have some inf series $\sum_{n=1}^{\infty} x_n $ and it converges... but you don't know the value.
+\end{minipage}}
+\\
+If you want to approximate $\sum_{n=1}^{\infty} x_n $ The best way to do it is just to add up a "bunch" of terms 
+\\
+Aka use the sum of the first \textbf{N} terms.
+\\
+\fbox{\begin{minipage}{15em}
+                Question: How far off is $\sum_{n=1}^{N}x_n  $ from $\sum_{n=1}^{\infty} x_n $? 
+\end{minipage}}
+\subsection*{Type of question: Approximate $\sum_{n=1}^{\infty}\frac{1}{n^{3}}$ to within 0.01:}
+
+\begin{align*}
+        \sum_{n=1}^{N}x_n &= x_1 + x_1 +x_3...+x_N \\
+        \sum_{n=1}^{\infty}x_n &= x_1 + x_2 + x_3 +... + x_N + x_{N+1}...
+\end{align*}
+This the sum to N is off by $x_{N+1} + x_{N+2}...$ 
+
+\fbox{\begin{minipage}{15em}
+                KEY::
+                $\sum_{n=1}^{\infty}x_n < \int_{N}^{\infty}f(x)  dx $
+\end{minipage}}
+Basically, if we can get the integral to go to converge than we can squeeze the series. 
+\\
+\begin{figure}[ht]
+    \centering
+    \incfig{newfig}
+    \caption{newfig}
+    \label{fig:newfig}
+\end{figure}
+Set up 
+\begin{align*}
+        \int_{N}^{\infty} \frac{1}{x^{3}} dx &= \lim_{t\to\infty} \int_{N}^{t} x^{-3} dx \\
+                                             &= \lim_{t\to\infty} \frac{x^{-2}}{-2}\text{from N to t} \\
+                                             &= \lim_{t\to\infty} \frac{t^{-2}}{-2} - \frac{N^{-2}}{-2} \\
+                                             &= \lim_{t\to\infty} -\frac{1}{2t^{2}} + \frac{1}{2N^{2}} \\
+                                             &= \frac{1}{2N^{2}}
+                                             \shortintertext{Now set this to be less than our goal} 
+        \frac{1}{2N^{2}} &< 0.01
+        \\
+        1 &< 2N^{2} * 0.01 \\
+        100 &< 2N^{2} \\
+        50 &< N^{2}\\
+        N^{2} &> 50 
+\end{align*}
+if N is greater than $\sqrt{50} $, then the sum is within 0.01 of the infinite sum
+\fbox{\begin{minipage}{15em}
+THIS ONLY WORKS IF IT SATISFIES THE INTEGRAL HYPOTHESIS!!!!
+\end{minipage}}
+
+\section*{Telescoping Series}
+\[
+        \sum_{n=4}^{\infty}(\frac{1}{n} - \frac{1}{n+2}) = \frac{1}{4} - \frac{1}{6} + \frac{1}{5} - \frac{1}{7} + \frac{1}{6}- \frac{1}{8} + \frac{1}{7} + \frac{1}{9}
+.\] Everything cancels except for the first two first parts ($\frac{1}{4}$ and $\frac{1}{5}$ )
+
+\subsection*{Web Assign-esque problem}
+
+\begin{align*}
+        \shortintertext{find value of} 
+        \sum_{n=4}^{\infty} \frac{1}{n^{2}+n} 
+        \shortintertext{How to guess: Partial Fraction Decomposition} 
+        \frac{1}{n^{2} +n} &= \frac{1}{n(n+1)} \\
+        \frac{1}{n(n+1 }&= \frac{A}{n} + \frac{B}{n+1}
+        \shortintertext{reminder: if we multiply both sides by denominator $n(n+1)$ then things cancel such that}
+        1 &= A(n+1) + B(n) \\
+        \shortintertext{Easiest way: plug in "easy" values of n} 
+        n &= 0\\
+        1 = A*1 + B*0 \\
+        A &= 1\\
+        n &= -1 \\
+        1 &= B(-1) \\
+        B &= -1 \\
+          &= \sum_{n=4}^{\infty} (\frac{A}{n} + \frac{B}{n+1}) \\
+          &= \sum_{n=4}^{\infty} (\frac{1}{n} - \frac{1}{n+1})
+\end{align*}
+
+
+\section*{11.4 Final thing: Comparison Test}
+If $0 \leq x_n \leq y_n$, then \\
+if $\sum_{n=1}^{\infty}y_n$ converges, then $\sum_{n=1}^{\infty}x_n$ converges \\
+if $\sum_{n=1}^{\infty}x_n$ diverges, then $\sum_{n=1}^{\infty}y_n$ diverges
+
+\fbox{\begin{minipage}{35em}
+                Key things we want to compare these two: (Because they're what we know)
+                \begin{enumerate}
+                        \item $\frac{1}{n^{p}}$ \[ \begin{cases}
+                                                conv & p > 1
+                                                div & p \leq 1
+                        \end{cases}
+                        \]
+                        \item $r^{n}$
+                \end{enumerate}
+\end{minipage}}
+
+\subsection*{EX}
+\begin{align*}
+        \sum_{n=4}^{\infty}\frac{lnn}{n} \\
+        &=  \frac{lnn}{n} > \frac{1}{n}
+        &= n \geq 4, ln n \geq ln 4 > 1 
+        \shortintertext{so the original sum is also divergent by comparison test} 
+\end{align*}
+\end{document}

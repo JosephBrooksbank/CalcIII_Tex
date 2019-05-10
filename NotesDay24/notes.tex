@@ -1,0 +1,117 @@
+\documentclass[]{article}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{Calc III Notes Day 24}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+\section*{Main topics for test}
+\begin{itemize}
+        \item Improper Integrals   
+     \item Sequences
+             \subitem Convergent?
+             \subitem inc dec neither?
+             \subitem Bounded above below both neither?
+
+             \item Series
+                     \subitem Def of a series 
+                     \subitem geometric 
+                     \subitem is series converge, then terms $\to$ 0 
+\end{itemize}
+
+\section*{Reivew for test}
+\subsection*{ 3.c from practice exam}
+\[
+x_n = \frac{n}{n^{2} + 1}
+.\]
+
+\begin{itemize}
+        \item Does x n converge? \\
+                $(x_n)$ can be "turned into a function of x" $\frac{x}{x^{2}+1}$ \\
+                \begin{align*}
+                        \lim_{x\to\infty} \frac{x}{x^{2} + 1} \\
+                        &= \frac{\infty}{\infty} \\
+                        \shortintertext{L'H} 
+                        &= \frac{1}{2x} \\
+                        &= \lim_{x\to\infty} \frac{1}{2x} = 0  
+                \end{align*}
+                $(x_n)$ converges to zero 
+        \item is xn inc / dec?  
+                \\
+                Take derivative 
+                \begin{align*}
+                        \frac{x}{x^{2} + 1} \\
+                        &= (x)^{'}(x^{2}+1)-x(x^{2}+1)^{'} / (x^{2} + 1)^{2} 
+                        \\
+                        &= \frac{1-x^{2}}{\text{Some positive number, its squared} } \\
+                        \shortintertext{We're really looking at a sequence, so x is always bigger than one} 
+                        &= 1 - x^{2} \leq 0 
+                        \\
+                        &= Derivative is negaitve, so function is dec, so sequence is decreasing 
+                \end{align*}
+        \item is xn bounded above / below ?  \\ 
+                Seq is convergent, so the sequence is bounded 
+\end{itemize}
+\subsection*{Practice Exam Question 4}
+\[
+\sum^{\infty}_{n = 0} \frac{3^{n+1}}{5^{n-1}}
+.\] 
+
+plug in n = 1 
+\begin{align*}
+        &= \frac{3^{2}}{5^{0}}
+        \shortintertext{Next term} 
+        &= \frac{3^{3}}{5^{1}}
+        \shortintertext{next term} 
+        &= \frac{3^{4}}{5^{2}} \\
+        &= \frac{3^{2}}{5^{0}}(1 + \frac{3}{5} + \frac{3^{2}}{5^{2}}+...)\\
+        \shortintertext{This turns into our formula with r between -1 and 1 } 
+        &= \frac{3^{2}}{5^{0}}* (\frac{1}{1 - \frac{3}{5}})
+\end{align*}
+\subsection*{WebAssign 3?}
+\begin{align*}
+        \lim_{x\to-\infty} x^{2} * e^{2x} \\
+        &= \infty * 0 
+        \shortintertext{this is an indeterminate form} 
+        &= \frac{x^{2}}{e^{-2x}} \\
+        &= \frac{2x}{-2e^{-2x}} \\
+        &= \frac{2}{4e^{-2x}} \\
+        &= \frac{2}{\infty} = 0 
+\end{align*}
+\subsection*{WebAssign 3 q 15}
+\[
+\int_{0}^{3} \frac{18}{x^{2} - 6x + 5} dx 
+.\] 
+Can plug in both end points, and its fine 
+\\
+However, there ARE bad points 
+\\
+DNE if $x^{2} - 6x + 5 = 0$
+\\
+(x -5)(x -1) = 0 
+\\
+5 is not in the integral but 1 is 
+\begin{align*}
+        \int_{0}^{1} dx + \int_{1}^{3}  dx 
+        \shortintertext{this is an ugly one so} 
+\end{align*}
+\subsection*{Comparison TEST}
+\[
+\int_{1}^{\infty} \frac{2x^{2}}{x^{5}+10} dx 
+.\] 
+    The only improper integral we have been taught are 
+    $\int_{1}^{\infty} \frac{1}{x^{p}} dx $
+    \[ \begin{cases}
+                    conv & p > 1 \\
+                    diverge & p\leq 1 
+    \end{cases}
+    \]
+\end{document}

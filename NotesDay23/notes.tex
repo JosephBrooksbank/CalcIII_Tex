@@ -1,0 +1,119 @@
+\documentclass[]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Title Page
+\title{CALC III NOTES DAY 23}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{Infinite Series}
+\subsection*{Geometric Series}
+Started with $1 + r + r^{2} + r^{3} ...$ 
+\\
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+    We decided that the nth partial sum $S_n = \frac{1  r^{n}}{1-r}$ -- Want to know if S converges to a limit or not}%
+}
+
+    What does $r^{n}$ do as $n \to \infty$?
+    \\
+    If $-1 < r < 1$, $r^{n}$ $\to$ 0 $\to$ Series converges to $S_n = \frac{1-0}{1-r} = \frac{1}{1-r} $
+    \\
+    If $r > 1 $ or $r < -1$, then $r^{n}$ diverges. $\to$ Series diverges 
+
+    \subsubsection*{EX}
+    $(r^{n}) =1 , -2, 4, -8, 16$ 
+    
+    this is terrible, it \textbf{DEFINITELY} diverges (doesn't even go to neg or positive infinity, it just..goes) 
+
+    back to $1 + r + r^{2} + r^{3} + ...$ 
+    \[ \begin{cases}
+            div & r < -1 or r > 1 \\
+            conv \frac{1}{1-r} & -1 < r < 1
+    \end{cases}
+    \]
+
+    \subsubsection*{EX for geometric series}
+    \[
+    1 + 0.1 + 0.01 + 0.001 + 0.0001...
+    .\] 
+    \begin{align*}
+           &= 1+ \frac{1}{10} + (\frac{1}{10})^{2} ... 
+           \shortintertext{r is between -1 and 1} 
+           &= \frac{1}{1-\frac{1}{10}} = 1.11111..
+    \end{align*}
+
+    \subsubsection*{Another example}
+    \[
+    5 + \frac{15}{2} + \frac{45}{4} + \frac{135}{8}...
+    .\] 
+    factor out a 5:
+    \begin{align*}
+            5 [ 1 + \frac{3}{2} + \frac{9}{4} + \frac{27}{8} ] \\
+            &= 5 [ 1 + \frac{3}{2} + (\frac{3}{2)^{2} + (\frac{3}{2)^{3}}} ]
+            \shortintertext{r = $\frac{3}{2} $ which is not in -1 to 1, so it diverges} 
+    \end{align*}
+
+    \subsubsection*{Notation for infinite series}
+    \[
+    \sum_{n=1}^{\infty} x_n = Sum of x_n as n goes from 1 to \infty
+    .\] 
+    \subsubsection*{Example using notation}
+    \[
+            \sum_{n=1}^{\infty} \frac{3^{n}+1}{5^{n}} = \sum_{n=1}^{\infty} \frac{3^{n}}{5^{n}} + \frac{1}{5^{n}} = \sum_{n=1}^{\infty} \frac{3}{5} ^{n} + (\frac{1}{5})^{n}  
+    .\] 
+    Write out some of the numbers 
+    \begin{align*}
+            \frac{3}{5} + \frac{1}{5} + (\frac{3}{5})^{2} + (\frac{1}{5})^{2} \\
+            &= [\frac{3}{5} + (\frac{3}{5})^{2} + (\frac{3}{5})^{3}+...] + [ \frac{1}{5} + (\frac{1}{5})^{2} + (\frac{1}{5})^{3} ] 
+            \shortintertext{ pull things out } 
+            &= \frac{3}{5} [ 1 + \frac{3}{5} + \frac{3}{5}^{2} + (\frac{3}{5})^{3}] + \frac{1}{5} [ 1 + \frac{1}{5} + (\frac{1}{5})^{2} +... ]
+            \shortintertext{r = $\frac{3}{5}$ and r = $\frac{1}{5}$, so}
+            &= \frac{3}{5} [ \frac{1}{1 - \frac{3}{5}}] + \frac{1}{5} [ \frac{1}{1-\frac{1}{5}} ] 
+    \end{align*}
+     
+    \subsubsection*{That final type of geometric series that looks nothing like the others}
+    \[
+     2.148148148148... \text{as a fraction} 
+    .\] 
+    Any repeating fraction can be written as an integer over an integer 
+    \\
+    \begin{align*}
+            &= 2 + \frac{148}{1000} + \frac{148}{10^{6}} + \frac{148}{10^{9}}+...\\
+            \shortintertext{ The two isn't part of the series, so it just kinda... stays out of things for a bit.} 
+            &= 2 + [\frac{148}{10^{3}} [ 1 + \frac{1}{10^{3} + \frac{1}{10^{6}} + \frac{1}{10^{9}}}] ] \\
+            &= \frac{148}{10^{3}} [ 1 + \frac{1}{10^{3}} + (\frac{1}{10^{3}})^{2} + (\frac{1}{10^{3}})^{3} + ...] \\
+            \shortintertext{r is $\frac{1}{10^{3}}$ }
+            &= 2 + \frac{148}{1000} [ \frac{1}{1 - \frac{1}{10^{3}}}] 
+    \end{align*}
+
+    \subsubsection*{One or two tiny things we missed}
+   If given an infinite list of numbers and they add up to some finite number (say 7)
+    \\
+    Then, the numbers in the sum have to be getting closer to 0 (because if the sum is finite, if the numbers all have value then they can't add up to a finite number
+    \\
+    Say $x_1 + x_2 + x_3 + x_4 + x_5$ converges $\to$ L
+    \\
+    $S_n - S_{n-1} = x_n$ 
+    \\
+    $x_1 +...+x_n - (x_1 + x_2 +....x_{n-1})$
+    \\
+    $S_n \to 0, S_{n-1} \to 0, so x_n \to 0$
+
+    \textbf{IF Infinite Series converges, then the terms $x_n$ goes to 0.}
+\end{document}
+
+
+\subsubsection*{FINAL THING I SWEAR}
+\[
+\sum_{n=1}^{\infty} 1 + \frac{1}{n} 
+.\]  What does this go to?
+\\ 
+individual terms $x_n = 1 + \frac{1}{n}$ $\to$ 1, not 0, so series diverges~

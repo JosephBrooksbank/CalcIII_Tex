@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{CALC III Notes Day 30}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{Homework help}
+
+\subsection*{Written Homework 3}
+\[
+\sum_{n=2}^{\infty} \frac{1}{n!}
+.\] Show converges with comparison test 
+\\
+Idea: show that the above sum is less than or equal to something that converges \\
+\begin{align*}
+        \shortintertext{What is $\frac{1}{n!}$ less than?}\\
+        \frac{1}{n!} &\leq \frac{1}{2} \\
+        \shortintertext{n! is greater than or equal to 2} 
+        \shortintertext{Unfortunately, that isn't gonna help (that sum is still diverging)} 
+        \frac{1}{n!} &\leq \frac{1}{n} 
+        \shortintertext{this STILL doesn't converge lmao} 
+        \frac{1}{n!} &\leq \frac{1}{n^{2}}
+        \shortintertext{This IS true, but how do we prove it?} 
+        \shortintertext{prove n! greater than n sqared}
+        n! &\geq n(n-1) \\
+           &= n^{2} - n 
+           \shortintertext{Limit comparison with $\sum_{n=1}^{\infty} \frac{1}{n^{2}} $} 
+\end{align*}
+
+\section*{11.5 Alternating Series}
+Alternating Series: Terms swap from pos, neg, pos, neg, etc 
+
+\subsubsection*{EX}
+\begin{align*}
+        1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5}  
+        \shortintertext{Question: Do the alternating signs cause enough 'cancelling" to make this converge?} 
+        0 \leq series &\leq 1
+        \shortintertext{can "group" every two pairs and they're always greater than 0} 
+        \shortintertext{If we group them in pairs IGNORING 1, every single thing inside those groups are positive, and 1 minus a bunch of positive things is less than 1} 
+\shortintertext{What if we grouped things after a point?} 
+1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + (\frac{1}{5} - \frac{1}{6}) + (\frac{1}{7} - \frac{1}{8})... > 1 - \frac{1}{2} + \frac{1}{3} + \frac{1}{4} 
+\shortintertext{Grouping after a different number} 
+1 - \frac{1}{2} + \frac{1}{3}-(\frac{1}{4} - \frac{1}{5}) - (\frac{1}{6} - \frac{1}{7}) ... < 1 - \frac{1}{2} + \frac{1}{3} 
+\shortintertext{Trapped series between two numbers $\frac{1}{4}$ apart: if we keep going, it turns out you can do this forever until the series converges } 
+\end{align*}
+Lets talk about why this works 
+\\
+Alternating series should converge because of the reasoning above\\
+say series is  \[
+        \sum_{n=1}^{\infty} (-1)^{n} x_n     x_n \geq 0
+.\] 
+or \[
+        \sum_{n=1}^{\infty} (-1)^{n+1} 
+.\]  
+need some things:
+\begin{enumerate}
+        \item $x_n \to 0$  
+        \item $x_n$ is decreasing   
+\end{enumerate}
+Then series converges!!
+
+Thats all you need for the Alternating Series Test (AST)
+\\
+If a series is alternating, just ceck if it goes to 0 and is decreasing 
+Much easier than limit or integral or comparison test, because if it follows these guidelines then it converges and you're done 
+
+\subsubsection*{EX}
+Does series \[
+        \sum_{n=2}^{\infty} (-1)^{n} * \frac{n^{2}}{n^{3}+1} 
+.\] Converge or Diverge?
+\begin{align*}
+        x_n &= \frac{n^{2}}{n^{3}+1} \\
+        \shortintertext{just checking 2 things: does it go to 0, and is it decreasing?} 
+        \shortintertext{turn into a function, take derivative} 
+        \frac{n^{2}}{n^{3}+1} &\to  \frac{x^{2}}{x^{3} +1}\\
+                              &\to L'H \lim_{x\to\infty} \frac{2x}{3x^{2}}\\
+                              &= \lim_{x\to\infty} \frac{2}{3x} = 0 
+                              \shortintertext{now check if decreasing} 
+        (\frac{x^{2}}{x^{3}+1})^{'} &= \frac{2x(x^{3}+1) - x^{2}(3x^{2})}{(x^{3}+1)^{2} }\\
+                                    &= \frac{x(2-x^{3}}{(x^{3}+1)^{2}}
+                                    \shortintertext{Less than 0, so original function is decreasing (plug in numbers from sum) } 
+\end{align*}
+Its decreasing and going to 0, so its converging 
+
+\subsubsection*{EX}
+$\sum_{n=2}^{\infty} (-1)^{n} * \frac{n}{2n+1} $ 
+\begin{enumerate}
+\item $x_n \to 0?$ 
+        \begin{align*}
+                \frac{2 * \frac{1}{n}}{(2n+1) * \frac{1}{n}} &= \frac{1}{2 + \frac{1}{n}}
+                \\
+                                                             &\to \frac{1}{2}
+        \end{align*}
+\end{enumerate}
+Terms don't go to zero, so it doesn't converge (this is a rule of all series, not just the Alternating Series)
+
+\end{document}

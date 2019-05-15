@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc 3 \\ Written Homework 6}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\newcommand\graph1{$y = \frac{1}{x ln(x)}$
+\section{Infinite Series $\sum_{n=3}^{\infty} \frac{1}{n ln(n)} $ }
+\begin{figure}[ht]
+    \centering
+    \incfig{graph-of-function}
+    \caption{graph of function}
+    \label{fig:graph-of-function}
+\end{figure}
+
+\subsection*{ How many terms to add to hit 3?}
+
+Each rectangle goes a bit above the curve, so they have slightly more than the actual area under that part of the curve. Since the integral is the exact area of the curve, the sum will be greater than the integral. 
+Idea: Solve integral from 3 to N+1 $\int_{3}^{N+1} \frac{1}{xlnx} dx $
+
+
+\section{Estimation Formulas}
+Estimate $\sum_{n=1}^{\infty} \frac{1}{n^{4}}$ 
+
+
+\end{document}

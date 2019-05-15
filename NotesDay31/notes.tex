@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{CALC III Day 31}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{Alternate Series Test}
+
+\fbox{\begin{minipage}{35em}
+                if series $\sum_{n=1}^{\infty} (-1)^{n}x_n $ or $\sum_{n=1}^{\infty} (-1)n+1 x_n$ and $x_n \geq 0$, series is \textbf{alternating.}
+
+                If:
+                \begin{enumerate}
+                \item $x_n$ $\to$ 0
+                \item $x_n$ is decreasing  
+                \end{enumerate}
+                then series is converging!
+
+                if 1 fails, series diverges \\ if 2 fails, ???
+\end{minipage}}
+
+\subsubsection*{EX}
+
+1:
+\begin{align*}
+        \sum_{n=2}^{\infty} \frac{1}{ln n} * (-1)^{n}\\
+        &= \lim_{x\to\infty} \frac{1}{lnx} = \frac{1}{\infty} = 0 
+\end{align*}
+\clearpage
+2:Decreasing?
+
+\begin{align*}
+        \frac{1}{lnx} &= \frac{0 * lnx - 1 * \frac{1}{x}}{(lnx)^{2}} 
+        \\
+                      &= \frac{\frac{-1}{x}}{(lnx)^{2}} 
+                      \shortintertext{-1 is negative, so we need to make sure rest is positive} 
+                      \shortintertext{x is always positive, and ln x is squared so its always positive so we good } 
+\end{align*}
+
+Other way to tell if its decreasing:
+
+\begin{figure}[ht]
+    \centering
+    \incfig{graph-of-ln-x}
+    \caption{graph of ln x}
+    \label{fig:graph-of-ln-x}
+\end{figure}
+
+ln x is increasing, so $\frac{1}{increasing}$ is decreasing 
+
+\fbox{\begin{minipage}{15em}
+                Going to 0 and decreasing, so by AST its converging :) 
+\end{minipage}}
+
+\subsubsection*{EX}
+
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^{2}}&
+        \shortintertext{converges to a number due to the AST} 
+        \shortintertext{could we approximate to within 0.05?} 
+        \shortintertext{the only way to get a guess / estimate for infinite series is to add up a bunch of terms} 
+        \shortintertext{How many terms N do we need to add up to be certain that we're within $\frac{1}{N^{2}}$ of true value?} 
+        \shortintertext{if add up the firt N turns, how far off am I from th eactual infinite series?} 
+        \shortintertext{lets try 15 terms, how close am I to the infinite series?}
+        \frac{1}{1^{2}} - \frac{1}{2^{2}} + \frac{1}{3^{2}} - .... + \frac{1}{15^{2}}     
+        \shortintertext{how far apart is this from the infinite series? Take the series} 
+        (\frac{1}{1^{2}} - \frac{1}{2^{2}} + \frac{1}{3^{2}} - .... + \frac{1}{15^{2}}) - (\frac{1}{1^{2}} - \frac{1}{2^{2}}..)
+        \shortintertext{everything from the first term cancels, so we're left with} 
+-         -\frac{1}{16^{2}} + \frac{1}{17^{2}} -... \\
+                                                  = \frac{1}{16^{2}} - \frac{1}{17^{2}} + \frac{1}{18^{2}}...
+                                                  \shortintertext{this is less than $\frac{1}{16^{2}}$} 
+                                                  \shortintertext{Remember from yesterday, when we pair things together} 
+                                                  \shortintertext{less than $\frac{1}{16^{2}}$, and 0.05 is much larger than $\frac{1}{16^{2}}$ so we good } 
+                                                  \shortintertext{what we wanted: a number that has distance of less than 0.05 from value of infinite series} 
+\end{align*}
+\fbox{\begin{minipage}{15em}
+What did we learn from all of this? 
+\end{minipage}}
+
+\\
+\begin{align*}
+        \shortintertext{If we have a series }
+        \sum_{n=1}^{\infty} (-1)^{n} x_n \text{and 1 and 2 from AST are true} \\
+        \shortintertext{then using 1st N terms gives estimate within distance $x_{N+1}$ of from value of infinite series} 
+\end{align*}
+So if you're trying to estimate the infinite series to within some number:
+\begin{enumerate}
+        \item Figure out how much N must be to make $X_{N+!} <$ that number  
+        \item then our guess is the sum of the first N terms 
+\end{enumerate}
+
+\subsubsection*{EX}
+\[
+        \text{Approx} \sum_{n=2}^{\infty} \frac{(-1)^{n}}{ln n} \text{ to within 0.01}  
+.\] 
+
+\end{document}
+

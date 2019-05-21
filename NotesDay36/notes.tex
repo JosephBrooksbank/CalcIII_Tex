@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc III Notes Day 36}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{Decide which test should work (and then use that test!) to decide convergence for:}
+
+\subsection*{1}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{n^{2}}{e^{n}} 
+        \\
+        \shortintertext{Do terms approach 0? yes}
+        \shortintertext{sign is all positive} 
+        \shortintertext{Trying ROOT test:} 
+        \shortintertext{ANSWER: Root test} 
+\end{align*}
+nth power makes it likely a root test 
+most of the time root and ratio test work interchangibly 
+\\
+Another (awful) possible solution: integral test (but awful) 
+
+\subsection*{2}
+\begin{align*}
+        \sum_{n=3}^{\infty} \frac{cos(n)^{2}}{n^{2}ln(n)}
+\end{align*}
+Solutions: Comparison (cos is always leq than 1) 
+\subsection*{3}
+\begin{align*}
+\sum_{n=8}^{\infty} \frac{\sqrt{n} +1}{n^{2}-1}
+\end{align*}
+Solution: Limit Comparison Test 
+
+\subsection*{4}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{5^{n}}{3^{n}+4^{n}} 
+\end{align*}
+
+\subsection*{5}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{(-3)^{n}n^{2}}{n!} 
+\end{align*}
+solution: can't use AST (derivative part) because factorial 
+\subsection*{6}
+diverges
+\subsection*{7}
+Integral test u = $\frac{1}{x}$
+\\
+LCT $\frac{1}{n^{2}}$
+\end{document}

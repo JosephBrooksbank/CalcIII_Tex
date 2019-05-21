@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc III Notes Day 32}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\fbox{\begin{minipage}{18em}
+Exam Friday 
+Material after exam 2 up to 11.5 (ALT Series Test)
+\end{minipage}}
+
+\section*{One last thing about AST}
+\begin{align*}
+        1 - 0 + \frac{1}{2} - 0 + \frac{1}{3} - 0 + \frac{1}{4}
+        \shortintertext{This is alternating} 
+        \shortintertext{The terms $\to$ 0} 
+        \shortintertext{So it should converge, but it actually diverges} 
+        \shortintertext{basically just $\sum_{}^{} \frac{1}{n} $} 
+        \shortintertext{It shoudn't actually converge, $x_n$ is NOT decreasing} 
+\end{align*}
+
+\begin{align*}
+\fbox{\begin{minipage}{15em}
+If the "$x_n$ " decreasing hypothesis fails, then alt series might diverge!
+\end{minipage}}
+\end{align*}
+\clearpage
+\section*{11.6 Absolute Convergence, Ratio Test, and other things}
+\begin{align*}
+        \text{Look at series} \\
+        1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \frac{1}{3} - \frac{1}{4} + \frac{1}{4} - \frac{1}{5}...
+        \shortintertext{This series converges by AST, but also by telescoping (everything cancels except 1} 
+        \text{"Positive" part of series: $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4}...$}\\
+        \text{"negative part": $-\frac{1}{2} -\frac{1}{3} -\frac{1}{4}$} 
+        \shortintertext{Diverges, going to negative $\infty$} 
+\end{align*}
+This series "barely converges" because the pos $\infty$ and neg $\infty$ barely "canel out"
+
+KIND of like an indeterminate form 
+
+\subsubsection*{Contrasting with}
+\begin{align*}
+        1 - \frac{1}{2^{2}} + \frac{1}{2^{2}} - \frac{1}{3^{2}} + \frac{1}{3^{2}} - ...
+        \shortintertext{Both positive and negative parts converge seperately, $\sum_{}^{} \frac{1}{n^{2}} $ converges} 
+\end{align*}
+
+\fbox{\begin{minipage}{40em}
+                DEFINITION: \\
+                A series $\sum_{n=1}^{\infty} x_n $ \textbf{absolutely} converges if
+                \begin{itemize}
+                        \item pos part and neg part both converge  
+                \end{itemize}
+                or can be written as $\sum_{n=1}^{\infty} |x_n| $ conv $<---$ making both parts pos, and still conv
+\end{minipage}}
+
+\subsubsection*{Ex}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{(-1)^{n}}{\sqrt{n} }
+        \\ \text{Does this converge?} 
+        \\ \text{AST...?} \frac{1}{\sqrt{n} } 
+        \\ \text{going to 0? yes}
+        \\ \text{decreasing? yes, $\sqrt{n} $ is increasing, so decreasing } 
+        \shortintertext{So this entire thing does converge} 
+        \shortintertext{Does it absolutely converge?} 
+        \sum_{n=1}^{\infty} | \frac{(-1)^{n}}{\sqrt{n} }| \\
+        = \sum_{n=1}^{\infty} \frac{1}{\sqrt{n} } 
+        \shortintertext{p is not bigger than 1, so it diverges} 
+\end{align*}
+\fbox{\begin{minipage}{25em}
+                DEFINITION: \\
+                \textbf{Conditionally} Convergent means:
+                \begin{itemize}
+                        \item convergent but NOT absolutely convergent  
+                \end{itemize}
+\end{minipage}}
+
+\subsubsection*{EX}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{cos(n)}{n^{2}} \text{  Converges?}  
+\end{align*}
+\begin{itemize}
+        \item cos 1 = + 
+        \item cos 2 = -
+        \item cos 3 = -
+        \item cos 4 = -
+        \item cos 5 = +
+\end{itemize}
+Not positive all the time, and also doesn't alternate, sign oscillates "randomly" 
+\\
+Can't use integral test, alternating test, etc 
+\\
+Let's try... absolute convergence? 
+\begin{align*}
+        \sum_{n=1}^{\infty} | \frac{cosn}{n^{2}}| &= \sum_{n=1}^{\infty} \frac{|cos n|}{n^{2}} \text{because $n^{2}$ is always pos}   
+        \\
+        \frac{|cosn|}{n^{2}} &\leq \frac{1}{n^{2}}\\
+        \sum_{n=1}^{\infty} \frac{1}{n^{2}} converges
+        \shortintertext{ due to the comparison test, the ABS series converges (always postive) converges due to comparison test with $\frac{1}{n^{2}}$.} 
+\end{align*}
+\fbox{\begin{minipage}{15em}
+Absolute Convergence is even \textbf{STRONGER} than convergence!
+\end{minipage}}
+So original series converges, because absolute converges! cool! 
+
+\subsection*{This chapter is really about}
+\section*{RATIO / ROOT TESTS}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{n^{2}}{3^{n}} \text{  Does this converge or diverge?}   
+\end{align*} Which wins? $3^{n}$. 
+Exponential growth CRUSHES polynomial growth \\
+\fbox{\begin{minipage}{15em}
+The $3^{n}$ should make $n^{3}$ irrelevant, so that makes this "like a geometric series"
+\end{minipage}}
+\\
+\fbox{\begin{minipage}{15em}
+                Idea: How to tell if $\sum_{n=1}^{\infty} x_n $ is "basically geometric"?
+\end{minipage}}
+\\
+If this is geometric, then $x_n$ is basically $r^{n}$ $\to$ $\sqrt[n]{x_n} == r$
+\\
+\fbox{\begin{minipage}{25em}
+ROOT TEST:\\
+If $\sum_{n=1}^{\infty} x_n $ series and $\sqrt[n]{x_n} \to L$, \\
+Then 
+\begin{enumerate}
+        \item if $ L < 1$ originial series (absolutely) converges
+        \item if $1 < L$, then series diverges
+        \item if $L = 1$ then test was inconclusive and you have to use another test
+\end{enumerate}
+\end{minipage}}
+
+
+\end{document}

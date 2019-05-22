@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc III Written Homework 5}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section{Squeeze Theorm on $\frac{2^{n}}{n!}$ }
+
+Idea: Trap $\frac{2^{n}}{n!}$ between two other sequences $x_n,z_n$ such that those both $\to$ 0. 
+\\
+We can write $\frac{2^{n}}{n!}$ as:
+\[
+        \frac{2*2*2*2*2...(n times)}{n*(n-1)*(n-2)*...*2*1}
+.\] 
+This can be "split up": 
+
+\begin{figure}[ht]
+    \centering
+    \incfig{split}
+    \caption{split}
+    \label{fig:split}
+\end{figure}
+
+This is greater than or equal to 0 (which goes to 0) because n starts at 1
+\\
+However, from the splitting up above, we can also see that it is equal to $2 * \frac{2}{2} * \frac{2}{3} *...$ all the way to $\frac{2}{n-1} * \frac{2}{n}$, which means that the first bit (before $\frac{2}{n}$ ) is always less than 4 because the numbers are decreasing:
+\[
+        2*1*(something less than 1) * (something less than that) \leq 2
+.\] 
+If we include the last part of the "split", $\frac{2}{n}$, we get that the entire thing is less than $\frac{2}{n} * 2 = \frac{4}{n}$. n $\to$ $\infty$, so $\frac{4}{n}$ $\to$ 0. Therefore:
+\fbox{\begin{minipage}{15em}
+the sequence $ \frac{2^{n}}{n!}$ is bounded on both sides by 0, so it also goes to 0.
+\end{minipage}}
+
+\section{The Sierpinski Carpet}
+
+Step 1-2: We removed the middle area of $\frac{1}{9}$. Next, we remove $\frac{1}{9}$ of the remaining 8 squares, each of which already contains $\frac{1}{9}$ th of the original area. If we removed the center of one of the squares, that would represent a loss of $\frac{1}{9}$ of $\frac{1}{9}$, or $\frac{1}{81}$ of the entire area. doing this 8 times gives $\frac{8}{81}$ more area removed, for a total of $\frac{17}{81}$ area removed. 
+\\
+
+In the next step, we remove $\frac{1}{9} * \frac{1}{9} * \frac{1}{9}$ th area for each of the new holes, or $\frac{1}{729}$ or $\frac{1}{9^{3}}$. We do this 8 times for each of the 8 squares from step 2, or $8 * 8$ times. This gives us a reduction in area of $64 * \frac{1}{9^{3}}$ or $\frac{64}{729}$. 
+\\
+\\
+This seems to be the sequence $\frac{8^{n-1}}{9^{n}}$, So the series of the entire carpet's removed area is 
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{8^{n-1}}{9^{n}}\\ 
+        \shortintertext{two options: Geometric series or Integral test..Integral test of this doesn't seem super fun, so lets try geometric series:} 
+        &= \frac{1}{9} * (1 + \frac{8}{9} + (\frac{8}{9})^{2} + (\frac{8}{9})^{3})
+        \shortintertext{It works as a geometric series! r = $\frac{8}{9}$, which is between -1 and 1. Thus:} 
+        &=  \frac{1}{9} * (\frac{1}{1-\frac{8}{9}})
+\end{align*}
+\fbox{\begin{minipage}{15em}
+                Series converges to $\frac{1}{9}*(\frac{1}{1-\frac{8}{9}})$, or $1$
+\end{minipage}}
+
+\end{document}

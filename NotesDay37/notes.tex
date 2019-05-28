@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{CALC III Notes Day 37}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+\subsection*{Online homework}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{n^{4}9^{n}}{n!} \text{check conv /  div}  
+        \shortintertext{Ratio Test} 
+        \frac{\frac{(n+1)^{4}9^{n+1}}{(n+1)!}}{\frac{n^{4}9^{n}}{n!}}
+        \\
+        = \frac{(n+1)^{4}9^{n+1}}{(n+1)!} * \frac{n!}{n^{4}9^{n}}
+        \shortintertext{Things cancel} 
+        \frac{(n+1)^{4}}{n^{4}}
+        \\
+        = (\frac{n+1}{n})^{4}
+        \\ 
+        = (1 + \frac{1}{n})^{4}
+\end{align*}
+
+4:
+\begin{align*}
+        \shortintertext{if we want first 4 decimal place to be correct, we could try to estimate to within 0.00001} 
+        \sum_{n=1}^{\infty} (-1)^{n}\frac{1}{3^{n}n!} 
+        \shortintertext{implementation:} 
+        \shortintertext{set $x_{N+!} < 0.00001$} 
+        \frac{1}{3^{N+1}(N+1)!} < 0.00001\\
+        = \frac{1}{3^{N+1}(N+1)!} < \frac{1}{100000}\\
+        3^{N+1}(N+1)! > 100000
+        \shortintertext{Could just plug in things until it works} 
+        \shortintertext{or, solve $3^{N+1} > 100000$ and when you add in the factorial, its still bigger } 
+        \shortintertext{log both sides} 
+\end{align*}
+\section*{11.8: Power Series}
+\fbox{\begin{minipage}{15em}
+Rest of class is power series!
+\end{minipage}}
+what if we did this:
+\begin{align*}
+        \sum_{n=0}^{\infty} x^{n} \\
+        &= 1 + x + x^{2} + x^{3} +... = \frac{1}{1-x} \text{if x is in (-1, 1)} \\
+        \text{Diverges all other x} 
+        \shortintertext{Look at this not as a single infinite series which converges, but as a series of functions which converge for all x in an interval } 
+\end{align*}
+As we take more and more terms:
+\begin{figure}[ht]
+    \centering
+    \incfig{partial-sums}
+    \caption{partial sums}
+    \label{fig:partial-sums}
+\end{figure}
+Picture these partial sums as curves which approach a limit function for some interal of x's 
+\\
+\clearpage
+what about $\sum_{n=0}^{\infty} 2^{n}x^{n} $? Converges / diverges for each value of x? 
+\\
+How do we decide if series converges or diverges for each x? 
+\begin{align*}
+        \sum_{n=0}^{\infty} (2x)^{n} \text{is geometric and converges if 2x is in (-1,1), so if x is (-0.5, 0.5)}  \\
+        \shortintertext{Answer: converges if x is ($\frac{-1}{2}, \frac{1}{2}$)} 
+\end{align*}
+\fbox{\begin{minipage}{29em}
+                IDEA: POWER Series is an infinite series which looks like \\
+                $\sum_{n=0}^{\infty} c_n * (x-a)^{n} $\\
+                $c_n$ : coefficient 
+                \\
+                a: center\\
+                Question we want the answer to is always for which values of x does the power series converge?
+\end{minipage}}
+
+Some more examples to make a little more sense 
+\subsection*{EX}
+\begin{align*}
+        \sum_{n=0}^{\infty} \frac{1}{4^{n}}* (x-3)^{n} \\
+        \text{For which x does this converge?} \\
+        = \sum_{n=0}^{\infty} (\frac{x-3}{4})^{n}\\
+        \text{geometric as well,  converge if $\frac{x-3}{4}$ is in (-1, 1)} 
+        \\
+        \text{x-3 is in (-4, 4)} \\
+        \shortintertext{Answer: converges for x in interval (-1, 7)} 
+\end{align*}
+Every answer is an interval 
+\\
+\fbox{\begin{minipage}{35em}
+                A power series always converges for an interval of x values with the midpoint equal to a (the center)
+\end{minipage}}
+
+\subsection*{EX}
+Harder one:
+\begin{align*}
+        \sum_{n=0}^{\infty} \frac{2^{n}}{n}* x^{n} 
+        \shortintertext{can't just "make it geometric" because not everything is to the same power } 
+        \shortintertext{IDEA: lets use the root test on it (x is just some number)} 
+        \sqrt[n]{\frac{2^{n}}{n} * x^{n}} \\
+        = (| \frac{(2x)^{n}}{n}|)^{\frac{1}{n}}
+        \\
+        (\frac{|(2x)^{n}|^{\frac{1}{n}}}{n^{\frac{1}{n}}}) \\
+        = \frac{|2x|}{n^{\frac{1}{n}}} \\
+        = |2x| 
+        \shortintertext{ conv if |2x| less than 1, div if greater than 1, inc if 1} 
+\end{align*}
+
+\end{document}

@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{CALC III Notes day 38}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{11.8 Power series}
+
+Remember: General form of power series 
+
+\begin{align*}
+        \sum_{n=0}^{\infty} c_n * (x-a)^{n}
+        \shortintertext{EX} 
+        \sum_{n=0}^{\infty} x^{n} \text{conv if between -1,1, otherwise not}  
+\end{align*}
+Power series are basically polynomials that are getting closer and closer to the curve of a graph, within a given interval
+\\
+Reminder from last class 
+
+\begin{align*}
+        \sum_{n=0}^{\infty} \frac{2^{n}}{n} * x^{n}
+        \shortintertext{to find out where a power series conv:} 
+        \text{Root / Ratio test:} 
+        \shortintertext{Root:} 
+        \sqrt[n]{|\frac{2^{n}}{n} * x^{n}} \\
+        &= \frac{2|x|}{n^{\frac{1}{n}}} \to 2|x|
+        \shortintertext{Conv if 2|x| $<$ 1, div if greater, inconclusive if 1} 
+\end{align*}
+\begin{figure}[ht]
+    \centering
+    \incfig{figure-1-}
+    \caption{figure 1}
+    \label{fig:figure-1-}
+\end{figure}
+What happens at endpoints?
+\\ Does it converge at x = 1 / 2? does it converge at -1 / 2? 
+\\
+For these values, just plug in the value of x and see which converge test to use 
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{2^{n}}{n} * (\frac{1}{2})^{n} 
+        \shortintertext{we already tried root test earlier, so lets try something else} 
+        2^{n} * (\frac{1}{2})^{n} = 1^{n} \\
+        \sum_{n=1}^{\infty} \frac{1}{n}  \text{ this diverges!} 
+        \shortintertext{so x = $\frac{1}{2}$ diverges!} 
+        \shortintertext{Plugging in x = $-\frac{1}{2}$:} 
+        = \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n} \text{ (see above)} 
+        \shortintertext{AST:} 
+        x_n = \frac{1}{n} \to 0 \\
+        \text{decreasing because n increasing} 
+        \shortintertext{so negative -0.5 IS converging, but positive 0.5 diverges} 
+\end{align*}
+\fbox{\begin{minipage}{22em}
+For any power series, the interval of convergence is the interval of all x values where series converges
+\end{minipage}}
+\\
+For the above problem, interval of convergence is $[\frac{-1}{2}, \frac{1}{2})$
+\\
+This will ALWAYS be an interval with center x = a
+\subsection*{Example:}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{(4x-8)^{n}}{3^{n}n^{2}} 
+        \shortintertext{is this a power series? doesn't look like}
+        \shortintertext{ can rewrite as } 
+        \sum_{n=1}^{\infty} \frac{1}{3^{n}n^{2}}* (4x-8)^{n}
+        \shortintertext{still a problem, theres a 4 infront of the x} 
+        \shortintertext{first thing: factor 4 out} 
+        ...* (4(x-2))^{n} 
+        \\
+        \sum_{n=1}^{\infty} \frac{1}{3^{n}n^{2}} * 4^{n}(n-2)^{n} \\
+        = \sum_{n=1}^{\infty} \frac{4^{n}}{3^{n}n^{2}}* (x-2)^{n} 
+        \shortintertext{now its in the proper form } 
+        \shortintertext{what is the interval of convergence?} 
+        \shortintertext{but first, on why there is always one interval and its centered on a} 
+        \shortintertext{when the x-a part is 0, it will ALWAYS converge} 
+        \shortintertext{so when x =2, this will converge} 
+        \shortintertext{what about if we plug in 2.5? $(\frac{1}{2})^{n}$ }
+        \shortintertext{the two exponential parts "fight", and as long as we're closeish to 2, the part going to 0 will win }
+        \shortintertext{so the area that converges is the area closeish to 2 (a)} 
+        \shortintertext{NOW BACK TO THE REAL PROBLEM} 
+        \shortintertext{Step 1: root / ratio test} 
+        [|(\frac{4}{3})^{n} * \frac{1}{n^{2}} * (x-2)^{n}|]^{\frac{1}{n}}  
+        \shortintertext{only put abs value over where its needed} 
+        [(\frac{4}{3})^{n} * \frac{1}{n^{2}} * |x-2|^{n}]^{\frac{1}{n}}
+        \shortintertext{ Can split up the exponent} 
+        [(\frac{4}{3})^{n}]^{\frac{1}{n}} * [\frac{1}{n^{2}}]^{\frac{1}{n}} * [|x-2|^{n}]^{\frac{1}{n}}
+        \shortintertext{the parts with n to the 1 / n cancel} 
+        \shortintertext{and the n to the 2 / n part goes to 1} 
+        =  \frac{4}{3} * |x-2| 
+        \shortintertext{CONVERGE if the above is less than 1, diverge if greater than 1, inconclusive if 1} 
+        \shortintertext{Which x values satisfy $\frac{4}{3}|x-2| < 1$?} 
+        |x-2| < \frac{1}{\frac{4}{3}}\\
+        |x-2| < \frac{3}{4}
+        \shortintertext{if $x = 2 \frac{3}{4}$, then we hit a limit } 
+        \shortintertext{negatively, if $x = 2 - \frac{3}{4}$, then we hit another limit} 
+        \shortintertext{basically, for any of these the range is gonna be the distance to the left and right from the center value a} 
+        \shortintertext{Step 2: Find out what happens at the end points (we know it converges INSIDE and diverges OUTSIDE, but what about DIRECTLY AT THEM?} 
+        \shortintertext{try $2 + \frac{3}{4}$} 
+        \sum_{n=1}^{\infty} (\frac{4}{3})^{n} * \frac{1}{n^{2}}*(2 + \frac{3}{4} -2)^{n} 
+        \shortintertext{2s cancel} 
+        \shortintertext{so do the two fractions} 
+        (\frac{4}{3})^{n} * (\frac{3}{4})^{n} = 1^{n} = 1\\ 
+        \shortintertext{going back to the sum:} 
+        \sum_{n=1}^{\infty} \frac{1}{n^{2}} \text{ converges!}  
+        \shortintertext{trying negative value:} 
+        \sum_{n=1}^{\infty} ... (2 - \frac{3}{4} - 2)^{n}
+        \shortintertext{everything still cancels, but instead} 
+        \sum_{n=1}^{\infty} \frac{1}{n^{2}} * (-1)^{n}
+        \shortintertext{AST: goes to 0, decreasing} 
+        \shortintertext{so converges!} 
+\end{align*}
+
+\subsection*{Example:}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{x^{n}}{n!}
+        \shortintertext{Root Test:} 
+        \sqrt[n]{|\frac{x^{n}}{n!}|} 
+        \shortintertext{Some simplification:} 
+        = \frac{|x|}{\sqrt[n]{n!} }
+        \shortintertext{bottom goes to infinity ( just a rule)} 
+        \shortintertext{ so whole thing goes to 0,} 
+        \shortintertext{so it DOESNT MATTER what x is, interval is negative infinity to infinity} 
+\end{align*}
+
+
+\end{document}

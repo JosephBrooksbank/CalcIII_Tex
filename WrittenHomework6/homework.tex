@@ -40,9 +40,68 @@
 Each rectangle goes a bit above the curve, so they have slightly more than the actual area under that part of the curve. Since the integral is the exact area of the curve, the sum will be greater than the integral. 
 Idea: Solve integral from 3 to N+1 $\int_{3}^{N+1} \frac{1}{xlnx} dx $
 
+\begin{align*}
+        \int_{3}^{N+1} \frac{1}{xlnx} dx& \text{ u sub, u = lnx du = $\frac{1}{x}dx$} \\
+                                        &= \int_{something}^{something else} \frac{1}{u} du  
+                                        \\
+                                        &= \int_{}^{} u^{-1} du 
+                                        \\
+                                        &= ln(u) \text{ putting back the bounds} \\
+                                        &= ln(ln(x)) from 3 to N+1 \\
+                                        &= ln(ln(N+1)) - ln(ln(3))
+                                        \\
+                                        &= ln(\frac{ln(N+1)}{ln(3)}) > 3\\
+        x &> 3^{e^{3}}-1
+        \\
+          &= \text{roughly $3.8 * 10^{9}$} 
+\end{align*}
 
 \section{Estimation Formulas}
 Estimate $\sum_{n=1}^{\infty} \frac{1}{n^{4}}$ 
+
+\begin{enumerate}
+        \item $x_n$ can be turned into a function: $\frac{1}{x^{4}}$: yes
+        \item $x_n$ is decreasing: $\lim_{x\to\infty} \frac{1}{x^{4}} \to 0$: yes
+        \item $x_n$ is geq 0: x is always positive, so yes 
+\end{enumerate}
+
+\fbox{\begin{minipage}{15em}
+Finding within 0.001 
+\end{minipage}}
+\begin{align*}
+        \int_{N}^{\infty} \frac{1}{n^{4}} dx &= \lim_{t\to\infty} \int_{N}^{t} x^{-4} dx \\
+                                             &= \lim_{t\to\infty}  \frac{x^{-3}}{-3} from N to t \\
+                                             &= \lim_{t\to\infty} \frac{t^{-3}}{-3} - \frac{N^{-3}}{3} \\
+                                             &= \lim_{t\to\infty} \frac{1}{-3t^{3}} + \frac{1}{3N^{3}} \text{ evaluating limit..}  \\
+                                             &= \frac{1}{3N^{3}}
+                                             \shortintertext{Set to be less than 0.001} 
+                                             \frac{1}{3N^{3}} < 0.001 
+                                             \\
+                                             1 < 3N^{3} * 0.001 \\
+                                             333.33... < N^{3} \\
+                                             N > \sqrt[3]{\frac{1000}{3}} 
+\end{align*}
+\fbox{\begin{minipage}{35em}
+if N is greater than $\sqrt[3]{\frac{1000}{3}} $, then the sum is within 0.001 of $\sum_{n=2}^{\infty} \frac{1}{n^{4}}$
+\end{minipage}}
+
+\section{Comparison Test}
+Note: we went over this in class so its not my original thought
+\\
+\fbox{\begin{minipage}{15em}
+                Idea: Show that $\frac{1}{n!} \leq \frac{1}{n^{2}}$
+\end{minipage}}
+\fbox{\begin{minipage}{15em}
+Idea 2: $\frac{1}{\text{increasing} } = \text{decreasing} $ \\
+so show $n! \geq n^{2}$
+\end{minipage}}
+$n! = n*(n-1)*(n-2)...$ so $n! \geq n(n-1)$ because it contains that and all the other terms past it (since this sum starts at 2, this is ALWAYS true)\\
+thus, $n! \geq n^{2} -n$
+\\
+I couldn't figure out how this helps us, because $n^{2} -n$ is not greater than $ n^{2}$
+\\
+Even though I'm unable to prove it, logically I know that $n^{2} < n!$, so $\frac{1}{n!} \leq \frac{1}{n^{2}}$, and we know that $\frac{1}{n^{2}}$ converges from earlier.
+
 
 
 \end{document}

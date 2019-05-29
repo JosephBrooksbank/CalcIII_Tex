@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{Calc III \\ Written Homework 8}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\section*{1}
+When the root test is done on the second sum, $\sum_{n=1}^{\infty} na_n$, the n recieve the exponent  $\frac{1}{n}$, from the $\sqrt[n]{} $. Because $\lim_{n\to\infty} n^{\frac{1}{n}}$ is 1, this second sum will have the same convergence as the original sum.
+
+\section*{2}
+\begin{itemize}
+        \item $\sum_{n=1}^{\infty} \frac{n}{n^{3}+1}$ I would use convergence, against $\frac{n}{n^{3}} = \frac{1}{n^{2}}$.
+        \item $\sum_{n=1}^{\infty} \frac{n^{2}+1}{n^{3}+1}$ I would use the Limit Comparison Test, against $\frac{n^{2}}{n^{3}}$.
+        \item $\sum_{n=1}^{\infty} \frac{n^{3}}{5^{n}} $ I would use the Root Test. 
+        \item $\sum_{n=1}^{\infty} \frac{(-1)^{n}}{\sqrt{n+1}} $ I would use the Alternating Series Test
+        \item $\sum_{n=1}^{\infty} \frac{1}{n\sqrt{nln(n)} } $ I would use the Integral test (u sub, ln x and $\frac{1}{x}$ )
+        \item $\sum_{n=1}^{\infty} ln(\frac{n}{3n+1}) $ convergence, against $\frac{n}{3n}$ 
+        \item $\sum_{n=1}^{\infty} \frac{cos 3n}{1 + (1.2)^{2}} $ I would use Limit Comparison test, with ($(\frac{1}{1.2})^{n}$)
+        \item $\sum_{n=1}^{\infty} \frac{n^{2n}}{(1+2n^{2})^{n}}$ I would use the root test
+        \item $\sum_{n=1}^{\infty} \frac{1 * 3 * 5... (2n - 1)}{5^{n}*n!} $ I would use the Ratio Test 
+\end{itemize}
+
+\section*{3}
+\begin{align*}
+        \sum_{n=1}^{\infty} \frac{n^{n}}{n!}x^{n} \\
+        \shortintertext{Ratio Test}
+        \shortintertext{From this point on, there is absolute value around the entire thing.} 
+        \frac{\frac{x^{n+1}(n+1)^{n+1}}{(n+1)n!}}{\frac{x^{n}n^{n}}{n!}}\\
+        = \frac{x^{n+1}(n+1)^{n+1}}{x^{n}n^{n}(n+1)}\\
+        = \frac{x(n+1)^{n}}{n^{n}} \\
+        \shortintertext{Not quite sure where to go from here} 
+\end{align*}
+\end{document}

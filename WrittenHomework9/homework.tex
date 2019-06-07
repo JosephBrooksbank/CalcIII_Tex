@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\setmainfont{Iosevka SS01}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Title Page
+\title{CALC III\\ Written Homework 9}
+\author{Joseph Brooksbank}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+        \item Find radius of convergence for the series 
+                \begin{align*}
+                        \sum_{n=0}^{\infty} (-1)^{n} * \frac{(2n)!}{(1-2n)4^{n}(n!)^{2}}x^{n} 
+                        \shortintertext{Ratio Test:} 
+                        &\frac{|(-1)^{n+1} * \frac{(2(n+1))!}{(1-2(n+1))4^{n+1}((n+1)!)^{2}}* x^{n+1}|}{|(-1)^{n} * \frac{(2n)!}{(1-2n)4^{n}(n!)^{2}}* x^{n}|}
+                        \shortintertext{some simplifying, done using the following ideas}
+                        \shortintertext{1:} 
+                        \frac{x^{n+1}}{x^{n}} &= x \\
+                        \shortintertext{2:} 
+                        \frac{(n!)^{2}}{((n+1)!)^{2}} &= \frac{n^{2} * (n-1)^{2} *...}{(n+1)^{2} * n^{2} * ...} \\
+                                                      &= \frac{1}{(n+1)^{2}}
+                                                      \shortintertext{3:} 
+                        \frac{(2(n+1))!}{(2n)!} &= \frac{(2n+2)!}{(2n)!} \\
+                                                &= \frac{(2n+2)(2n+1)(2n)(2n-1)...}{(2n)(2n-1)...}\\
+                                                &= (2n+2)(2n+1)
+                       \shortintertext{4:} 
+                        \frac{4^{n}}{4^{n+1}} &= \frac{1}{4}  
+                       \shortintertext{ Using these ideas, we get} 
+                       \frac{(2n+2)(2n+1)}{4(n+1)^{2}} * |x|
+                       \shortintertext{simplifying more} 
+                       \frac{2(n+1)(2n+1)}{4(n+1)^{2}} * |x|
+                                              &= \frac{2(2n+1)}{4(n+1)}* |x|
+                       \\
+                                              &= \frac{n+\frac{1}{2}}{n+1}* |x| = \frac{1 + \frac{\frac{1}{2}}{n}}{1 + \frac{1}{n}} * |x|
+                                              \shortintertext{limit to infinity = } 
+                                              |x|
+                                              \shortintertext{thus, this converges when |x| $<$ 1} 
+                \end{align*}
+                \fbox{\begin{minipage}{15em}
+                Radius of convergence = 1
+                \end{minipage}}
+        \item 
+                \subitem (a) $(1+x)^{\frac{-1}{2}}$ 
+                \begin{align*}
+                        \shortintertext{derivative of $\sqrt{1+x} $ is $\frac{1}{2}(1+x)^{ \frac{-1}{2}}$} 
+                        \shortintertext{so we need to derive the sum, and multiply both sides by 2 to offset} 
+                        (\sum_{n=0}^{\infty} (-1)^{n} * \frac{(2n)!}{(1-2n)4^{n}(n!)^{2}}*x^{n}) ^{'} = \sum_{n=0}^{\infty} (-1)^{n} * \frac{(2n)!}{(1-2n)4^{n}(n!)^{2}}* x^{n} * 2  
+                \end{align*}
+                \subitem (b) $(1-x^{2})^{\frac{-1}{2}}$ 
+                \begin{align*}
+                        \shortintertext{This is the same formula as above, but with $-x^{2}$ substituted for $x$.} 
+                        &= \sum_{n=0}^{\infty} (-1)^{n} * \frac{(2n)!}{(1-2n)4^{n}(n!)^{2}}  * (-x^{2})^{n} * 2
+                \end{align*}
+                \subitem (c) arcsinx
+                \begin{align*}
+                        \shortintertext{derivative of arcsinx = $(1-x^{2})^{-\frac{1}{2}}$} 
+                        \shortintertext{so if we take the integral of the previous series, we will have a formula for arcsin.} 
+                        \int_{}^{} \text{above series} dx\\
+                        &= \sum_{n=0}^{\infty} (-1)^{2n} * \frac{(2n)! * 2}{(1-2n)4^{n}(n!)^{2}} * \frac{x^{2n+1}}{2n+1}
+                \end{align*}
+                
+        \item 
+                \subitem (a) first few terms: $1, \frac{-2}{(1+x)^{3}}, \frac{6}{(1+x)^{4}}$ 
+                \\
+                conclusion: $f^{(n)}(0) = (-1)^{n} * \frac{n!}{(1+x)^{n+2}}$
+                \subitem (b) series = \sum_{n=0}^{\infty} (-1)^{n}* \frac{n!}{(1+x)^{n+2}} x^{n} 
+                \subitem (c) geometric series 
+                \begin{align*}
+                        \shortintertext{start with default series:} 
+                        \frac{1}{1-x} &= \sum_{n=0}^{\infty} x^{n}
+                        \shortintertext{substitute -x} 
+                        \frac{1}{1+x} &= \sum_{n=0}^{\infty} (-1)^{n} * x^{n} 
+                        \shortintertext{differentiate both sides:} 
+                        \frac{1}{(1+x)^{2}} = \sum_{n=0}^{\infty} (-1)^{n} * n x^{n-1} 
+                \end{align*}
+        \item 
+                \subitem (b)
+                \begin{align*}
+                        ln(x) = \sum_{n=0}^{\infty} (1-x)^{n} \\
+                        \frac{ln(x) +1 - x}{(1-x)^{2}} &= \frac{(\sum_{n=0}^{\infty} (1-x)^{n}) + 1 - x }{(1-x)^{2}}
+                        \\
+                                                       &= \frac{1 + (1-x)^{1} + (1-x)^{2} + ... + 1 - x}{(1-x)^{2}}
+                                                       \\
+                                                       &= \frac{1}{(1-x)^{2}} + \frac{1-x}{(1-x)^{2}} + \frac{(1-x)^{2}}{(1-x)^{2}} + \frac{(1-x)^{3}}{(1-x)^{2}} + ... + \frac{1}{(1-x)^{2}} - \frac{x}{(1-x)^{2}}
+                                                       \shortintertext{the terms become larger and larger in the sum as time goes on, so this series goes to infinity } 
+                \end{align*}
+
+\end{enumerate}
+
+\end{document}
